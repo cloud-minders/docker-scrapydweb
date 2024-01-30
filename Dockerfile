@@ -9,13 +9,11 @@ RUN ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
 
 RUN pip install -U pip
-RUN pip install scrapydweb
-RUN pip install psycopg2
+RUN pip install scrapydweb psycopg2
 
 RUN mkdir /scrapyd
 COPY scrapydweb_settings_v10.py /scrapyd/
 WORKDIR /scrapyd/
-COPY custom_runner /
 
 ADD https://raw.githubusercontent.com/cloud-minders/wait-for-it/master/wait-for-it.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wait-for-it.sh
